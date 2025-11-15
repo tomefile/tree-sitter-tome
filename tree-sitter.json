@@ -10,7 +10,8 @@
 				"Tomefile",
 				"tome"
 			],
-			"injection-regex": "^tomefile$",
+			"highlights": "queries/tome/highlights.scm",
+			"injection-regex": "^tome$",
 			"class-name": "TreeSitterTomefile"
 		}
 	],
@@ -40,4 +41,3 @@
 		"zig": false
 	}
 }
-
