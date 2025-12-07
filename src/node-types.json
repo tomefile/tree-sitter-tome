@@ -20,6 +20,14 @@
           "named": true
         },
         {
+          "type": "pipe",
+          "named": true
+        },
+        {
+          "type": "redirect",
+          "named": true
+        },
+        {
           "type": "string",
           "named": true
         },
@@ -98,6 +106,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "pipe",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "source_file",
@@ -247,6 +260,10 @@
   },
   {
     "type": "modifier",
+    "named": true
+  },
+  {
+    "type": "redirect",
     "named": true
   },
   {

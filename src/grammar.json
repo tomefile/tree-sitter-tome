@@ -287,6 +287,18 @@
         },
         {
           "type": "SYMBOL",
+          "name": "pipe"
+        },
+        {
+          "type": "PREC",
+          "value": 1,
+          "content": {
+            "type": "SYMBOL",
+            "name": "redirect"
+          }
+        },
+        {
+          "type": "SYMBOL",
           "name": "comparator"
         }
       ]
@@ -505,6 +517,33 @@
           {
             "type": "STRING",
             "value": "="
+          }
+        ]
+      }
+    },
+    "pipe": {
+      "type": "TOKEN",
+      "content": {
+        "type": "STRING",
+        "value": "|"
+      }
+    },
+    "redirect": {
+      "type": "TOKEN",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "<"
+          },
+          {
+            "type": "STRING",
+            "value": ">"
+          },
+          {
+            "type": "STRING",
+            "value": "<<"
           }
         ]
       }

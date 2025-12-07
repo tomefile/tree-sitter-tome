@@ -61,6 +61,8 @@ module.exports = grammar({
 				$.identifier,
 				$.variable,
 				$.variable_expansion,
+				$.pipe,
+				prec(1, $.redirect),
 				$.comparator
 			),
 
@@ -109,5 +111,9 @@ module.exports = grammar({
 			),
 
 		comparator: (_) => token(choice("==", ">=", "<=", "<", ">", "=")),
+
+		pipe: (_) => token("|"),
+
+		redirect: (_) => token(choice("<", ">", "<<")),
 	},
 });
