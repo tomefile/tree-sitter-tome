@@ -97,20 +97,21 @@ module.exports = grammar({
 
 		identifier: (_) => /[\w\d\-\_@\?\.]+/,
 
-		filepath: (_) => /[\w\d\-\_@\?\.\~/]+/,
+		filepath: (_) => /[\w\d\-\_@\?\.\~/\*]+/,
 
 		variable: (_) => token(seq("$", token.immediate(/[\w\d\-\_]+/))),
-		modifier: () => token.immediate(/[^\n}]+/),
+		modifier: () => token.immediate(/[^\n}\:]+/),
 
 		variable_expansion: ($) =>
 			seq(
 				"${",
 				$.identifier,
-				optional(seq(token.immediate(":"), $.modifier)),
+				repeat(seq(token.immediate(":"), $.modifier)),
 				token.immediate("}")
 			),
 
-		comparator: (_) => token(choice("==", ">=", "<=", "<", ">", "=")),
+		comparator: (_) =>
+			token(choice("==", ">=", "<=", "<", ">", "=", "&&", "||")),
 
 		pipe: (_) => token("|"),
 

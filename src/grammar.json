@@ -417,7 +417,7 @@
     },
     "filepath": {
       "type": "PATTERN",
-      "value": "[\\w\\d\\-\\_@\\?\\.\\~/]+"
+      "value": "[\\w\\d\\-\\_@\\?\\.\\~/\\*]+"
     },
     "variable": {
       "type": "TOKEN",
@@ -442,7 +442,7 @@
       "type": "IMMEDIATE_TOKEN",
       "content": {
         "type": "PATTERN",
-        "value": "[^\\n}]+"
+        "value": "[^\\n}\\:]+"
       }
     },
     "variable_expansion": {
@@ -457,28 +457,23 @@
           "name": "identifier"
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "IMMEDIATE_TOKEN",
-                  "content": {
-                    "type": "STRING",
-                    "value": ":"
-                  }
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "modifier"
+          "type": "REPEAT",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "IMMEDIATE_TOKEN",
+                "content": {
+                  "type": "STRING",
+                  "value": ":"
                 }
-              ]
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
+              },
+              {
+                "type": "SYMBOL",
+                "name": "modifier"
+              }
+            ]
+          }
         },
         {
           "type": "IMMEDIATE_TOKEN",
@@ -517,6 +512,14 @@
           {
             "type": "STRING",
             "value": "="
+          },
+          {
+            "type": "STRING",
+            "value": "&&"
+          },
+          {
+            "type": "STRING",
+            "value": "||"
           }
         ]
       }
