@@ -271,6 +271,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "filepath"
+        },
+        {
+          "type": "SYMBOL",
           "name": "identifier"
         },
         {
@@ -313,6 +317,10 @@
                   {
                     "type": "SYMBOL",
                     "name": "variable_expansion"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "subcommand"
                   }
                 ]
               }
@@ -346,6 +354,10 @@
                   {
                     "type": "SYMBOL",
                     "name": "variable_expansion"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "subcommand"
                   }
                 ]
               }
@@ -390,6 +402,10 @@
     "identifier": {
       "type": "PATTERN",
       "value": "[\\w\\d\\-\\_@\\?\\.]+"
+    },
+    "filepath": {
+      "type": "PATTERN",
+      "value": "[\\w\\d\\-\\_@\\?\\.\\~/]+"
     },
     "variable": {
       "type": "TOKEN",
@@ -485,6 +501,10 @@
           {
             "type": "STRING",
             "value": ">"
+          },
+          {
+            "type": "STRING",
+            "value": "="
           }
         ]
       }

@@ -57,6 +57,7 @@ module.exports = grammar({
 			choice(
 				$.subcommand,
 				$.string,
+				$.filepath,
 				$.identifier,
 				$.variable,
 				$.variable_expansion,
@@ -67,18 +68,34 @@ module.exports = grammar({
 			choice(
 				seq(
 					'"',
-					repeat(choice(/[^"]/, $.variable, $.variable_expansion)),
+					repeat(
+						choice(
+							/[^"]/,
+							$.variable,
+							$.variable_expansion,
+							$.subcommand
+						)
+					),
 					'"'
 				),
 				seq(
 					"'",
-					repeat(choice(/[^']/, $.variable, $.variable_expansion)),
+					repeat(
+						choice(
+							/[^']/,
+							$.variable,
+							$.variable_expansion,
+							$.subcommand
+						)
+					),
 					"'"
 				),
 				seq("`", repeat(choice(/[^`\\]/, /\\./)), "`")
 			),
 
 		identifier: (_) => /[\w\d\-\_@\?\.]+/,
+
+		filepath: (_) => /[\w\d\-\_@\?\.\~/]+/,
 
 		variable: (_) => token(seq("$", token.immediate(/[\w\d\-\_]+/))),
 		modifier: () => token.immediate(/[^\n}]+/),
@@ -91,6 +108,6 @@ module.exports = grammar({
 				token.immediate("}")
 			),
 
-		comparator: (_) => token(choice("==", ">=", "<=", "<", ">")),
+		comparator: (_) => token(choice("==", ">=", "<=", "<", ">", "=")),
 	},
 });

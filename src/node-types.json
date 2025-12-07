@@ -12,6 +12,10 @@
           "named": true
         },
         {
+          "type": "filepath",
+          "named": true
+        },
+        {
           "type": "identifier",
           "named": true
         },
@@ -128,6 +132,10 @@
       "required": false,
       "types": [
         {
+          "type": "subcommand",
+          "named": true
+        },
+        {
           "type": "variable",
           "named": true
         },
@@ -227,6 +235,10 @@
   },
   {
     "type": "comparator",
+    "named": true
+  },
+  {
+    "type": "filepath",
     "named": true
   },
   {
