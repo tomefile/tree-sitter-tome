@@ -58,12 +58,12 @@ module.exports = grammar({
 				$.subcommand,
 				$.string,
 				$.filepath,
+				prec(2, $.comparator),
 				$.identifier,
 				$.variable,
 				$.variable_expansion,
 				$.pipe,
-				prec(1, $.redirect),
-				$.comparator
+				prec(1, $.redirect)
 			),
 
 		string: ($) =>
@@ -110,8 +110,7 @@ module.exports = grammar({
 				token.immediate("}")
 			),
 
-		comparator: (_) =>
-			token(choice("==", ">=", "<=", "<", ">", "=", "AND", "OR")),
+		comparator: (_) => choice("==", ">=", "<=", "<", ">", "=", "AND", "OR"),
 
 		pipe: (_) => token("|"),
 

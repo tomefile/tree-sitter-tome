@@ -274,6 +274,14 @@
           "name": "filepath"
         },
         {
+          "type": "PREC",
+          "value": 2,
+          "content": {
+            "type": "SYMBOL",
+            "name": "comparator"
+          }
+        },
+        {
           "type": "SYMBOL",
           "name": "identifier"
         },
@@ -296,10 +304,6 @@
             "type": "SYMBOL",
             "name": "redirect"
           }
-        },
-        {
-          "type": "SYMBOL",
-          "name": "comparator"
         }
       ]
     },
@@ -485,44 +489,41 @@
       ]
     },
     "comparator": {
-      "type": "TOKEN",
-      "content": {
-        "type": "CHOICE",
-        "members": [
-          {
-            "type": "STRING",
-            "value": "=="
-          },
-          {
-            "type": "STRING",
-            "value": ">="
-          },
-          {
-            "type": "STRING",
-            "value": "<="
-          },
-          {
-            "type": "STRING",
-            "value": "<"
-          },
-          {
-            "type": "STRING",
-            "value": ">"
-          },
-          {
-            "type": "STRING",
-            "value": "="
-          },
-          {
-            "type": "STRING",
-            "value": "AND"
-          },
-          {
-            "type": "STRING",
-            "value": "OR"
-          }
-        ]
-      }
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "=="
+        },
+        {
+          "type": "STRING",
+          "value": ">="
+        },
+        {
+          "type": "STRING",
+          "value": "<="
+        },
+        {
+          "type": "STRING",
+          "value": "<"
+        },
+        {
+          "type": "STRING",
+          "value": ">"
+        },
+        {
+          "type": "STRING",
+          "value": "="
+        },
+        {
+          "type": "STRING",
+          "value": "AND"
+        },
+        {
+          "type": "STRING",
+          "value": "OR"
+        }
+      ]
     },
     "pipe": {
       "type": "TOKEN",

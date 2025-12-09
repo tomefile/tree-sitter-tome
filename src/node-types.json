@@ -85,6 +85,11 @@
     }
   },
   {
+    "type": "comparator",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "directive",
     "named": true,
     "fields": {},
@@ -234,6 +239,38 @@
     "named": false
   },
   {
+    "type": "<",
+    "named": false
+  },
+  {
+    "type": "<=",
+    "named": false
+  },
+  {
+    "type": "=",
+    "named": false
+  },
+  {
+    "type": "==",
+    "named": false
+  },
+  {
+    "type": ">",
+    "named": false
+  },
+  {
+    "type": ">=",
+    "named": false
+  },
+  {
+    "type": "AND",
+    "named": false
+  },
+  {
+    "type": "OR",
+    "named": false
+  },
+  {
     "type": "\\\n",
     "named": false
   },
@@ -245,10 +282,6 @@
     "type": "comment",
     "named": true,
     "extra": true
-  },
-  {
-    "type": "comparator",
-    "named": true
   },
   {
     "type": "filepath",
