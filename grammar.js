@@ -46,8 +46,7 @@ module.exports = grammar({
 					$.identifier,
 					optional("!"),
 					" ",
-					repeat($.argument),
-					repeat(seq("\\\n", $.argument))
+					repeat(seq(optional("\\\n"), $.argument))
 				)
 			),
 
