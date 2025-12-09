@@ -515,11 +515,11 @@
           },
           {
             "type": "STRING",
-            "value": "&&"
+            "value": "AND"
           },
           {
             "type": "STRING",
-            "value": "||"
+            "value": "OR"
           }
         ]
       }

@@ -111,7 +111,7 @@ module.exports = grammar({
 			),
 
 		comparator: (_) =>
-			token(choice("==", ">=", "<=", "<", ">", "=", "&&", "||")),
+			token(choice("==", ">=", "<=", "<", ">", "=", "AND", "OR")),
 
 		pipe: (_) => token("|"),
 
