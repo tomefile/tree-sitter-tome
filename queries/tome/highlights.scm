@@ -24,7 +24,7 @@
 (directive
   (identifier) @keyword)
 
-(comparator) @operator
+(comparator) @keyword
 
 (subcommand) @module
 
