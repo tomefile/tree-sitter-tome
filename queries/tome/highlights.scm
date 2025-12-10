@@ -19,7 +19,7 @@
 (modifier) @tag
 
 (command
-  (identifier) @function)
+  (filepath) @function)
 
 (directive
   (identifier) @keyword)
