@@ -43,7 +43,7 @@ module.exports = grammar({
 		command: ($) =>
 			prec.right(
 				seq(
-					$.identifier,
+					$.filepath,
 					optional("!"),
 					" ",
 					repeat(seq(optional("\\\n"), $.argument))

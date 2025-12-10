@@ -583,6 +583,12 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       if (lookahead == '}') ADVANCE(54);
       if (lookahead == '\t' ||
           lookahead == ' ') ADVANCE(22);
+      if (lookahead == '-' ||
+          lookahead == '.' ||
+          ('0' <= lookahead && lookahead <= '9') ||
+          ('?' <= lookahead && lookahead <= 'Z') ||
+          lookahead == '_' ||
+          ('a' <= lookahead && lookahead <= 'z')) ADVANCE(47);
       END_STATE();
     case 8:
       if (lookahead == '#') ADVANCE(37);
@@ -665,12 +671,12 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
         '\t', 22,
         ' ', 22,
       );
-      if (lookahead == '-' ||
-          lookahead == '.' ||
-          ('0' <= lookahead && lookahead <= '9') ||
+      if (lookahead == '*' ||
+          ('-' <= lookahead && lookahead <= '9') ||
           ('?' <= lookahead && lookahead <= 'Z') ||
           lookahead == '_' ||
-          ('a' <= lookahead && lookahead <= 'z')) ADVANCE(47);
+          ('a' <= lookahead && lookahead <= 'z') ||
+          lookahead == '~') ADVANCE(48);
       END_STATE();
     case 15:
       if (eof) ADVANCE(16);
@@ -681,12 +687,12 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       if (lookahead == '|') ADVANCE(24);
       if (lookahead == '\t' ||
           lookahead == ' ') ADVANCE(22);
-      if (lookahead == '-' ||
-          lookahead == '.' ||
-          ('0' <= lookahead && lookahead <= '9') ||
+      if (lookahead == '*' ||
+          ('-' <= lookahead && lookahead <= '9') ||
           ('?' <= lookahead && lookahead <= 'Z') ||
           lookahead == '_' ||
-          ('a' <= lookahead && lookahead <= 'z')) ADVANCE(47);
+          ('a' <= lookahead && lookahead <= 'z') ||
+          lookahead == '~') ADVANCE(48);
       END_STATE();
     case 16:
       ACCEPT_TOKEN(ts_builtin_sym_end);
@@ -1013,13 +1019,13 @@ static const TSLexerMode ts_lex_modes[STATE_COUNT] = {
   [69] = {.lex_state = 13},
   [70] = {.lex_state = 13},
   [71] = {.lex_state = 10},
-  [72] = {.lex_state = 14},
+  [72] = {.lex_state = 7},
   [73] = {.lex_state = 1},
-  [74] = {.lex_state = 14},
+  [74] = {.lex_state = 7},
   [75] = {.lex_state = 13},
   [76] = {.lex_state = 13},
-  [77] = {.lex_state = 14},
-  [78] = {.lex_state = 14},
+  [77] = {.lex_state = 7},
+  [78] = {.lex_state = 7},
 };
 
 static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
@@ -1063,7 +1069,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
     [anon_sym_LF] = ACTIONS(13),
     [anon_sym_PIPE] = ACTIONS(15),
     [anon_sym_COLON] = ACTIONS(17),
-    [sym_identifier] = ACTIONS(19),
+    [sym_filepath] = ACTIONS(19),
   },
   [STATE(2)] = {
     [sym_subcommand] = STATE(13),
@@ -1760,7 +1766,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(17), 1,
       anon_sym_COLON,
     ACTIONS(19), 1,
-      sym_identifier,
+      sym_filepath,
     ACTIONS(164), 1,
       ts_builtin_sym_end,
     ACTIONS(166), 1,
@@ -1783,7 +1789,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(178), 1,
       anon_sym_COLON,
     ACTIONS(181), 1,
-      sym_identifier,
+      sym_filepath,
     ACTIONS(3), 2,
       sym_comment,
       sym__tab,
@@ -1804,7 +1810,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(17), 1,
       anon_sym_COLON,
     ACTIONS(19), 1,
-      sym_identifier,
+      sym_filepath,
     ACTIONS(164), 1,
       ts_builtin_sym_end,
     ACTIONS(3), 2,
@@ -1824,7 +1830,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(17), 1,
       anon_sym_COLON,
     ACTIONS(19), 1,
-      sym_identifier,
+      sym_filepath,
     ACTIONS(164), 1,
       ts_builtin_sym_end,
     ACTIONS(3), 2,
@@ -1844,7 +1850,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(17), 1,
       anon_sym_COLON,
     ACTIONS(19), 1,
-      sym_identifier,
+      sym_filepath,
     ACTIONS(184), 1,
       anon_sym_RBRACE,
     ACTIONS(3), 2,
@@ -1864,7 +1870,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(17), 1,
       anon_sym_COLON,
     ACTIONS(19), 1,
-      sym_identifier,
+      sym_filepath,
     ACTIONS(186), 1,
       ts_builtin_sym_end,
     ACTIONS(3), 2,
@@ -1884,7 +1890,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(17), 1,
       anon_sym_COLON,
     ACTIONS(19), 1,
-      sym_identifier,
+      sym_filepath,
     ACTIONS(188), 1,
       ts_builtin_sym_end,
     ACTIONS(3), 2,
@@ -1904,7 +1910,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(17), 1,
       anon_sym_COLON,
     ACTIONS(19), 1,
-      sym_identifier,
+      sym_filepath,
     ACTIONS(190), 1,
       anon_sym_RBRACE,
     ACTIONS(3), 2,
@@ -1924,7 +1930,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(17), 1,
       anon_sym_COLON,
     ACTIONS(19), 1,
-      sym_identifier,
+      sym_filepath,
     ACTIONS(188), 1,
       ts_builtin_sym_end,
     ACTIONS(3), 2,
@@ -2022,7 +2028,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_LF,
       anon_sym_PIPE,
       anon_sym_COLON,
-      sym_identifier,
+      sym_filepath,
   [824] = 4,
     ACTIONS(226), 1,
       anon_sym_SEMI,
@@ -2037,7 +2043,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_LF,
       anon_sym_PIPE,
       anon_sym_COLON,
-      sym_identifier,
+      sym_filepath,
   [843] = 5,
     ACTIONS(3), 1,
       sym__tab,
@@ -2053,7 +2059,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_LF,
       anon_sym_PIPE,
       anon_sym_COLON,
-      sym_identifier,
+      sym_filepath,
   [864] = 4,
     ACTIONS(233), 1,
       anon_sym_SEMI,
@@ -2068,7 +2074,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_LF,
       anon_sym_PIPE,
       anon_sym_COLON,
-      sym_identifier,
+      sym_filepath,
   [883] = 7,
     ACTIONS(235), 1,
       anon_sym_DOLLAR_LPAREN,
@@ -2119,7 +2125,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_LF,
       anon_sym_PIPE,
       anon_sym_COLON,
-      sym_identifier,
+      sym_filepath,
   [952] = 4,
     ACTIONS(265), 1,
       anon_sym_SEMI,
@@ -2134,7 +2140,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_LF,
       anon_sym_PIPE,
       anon_sym_COLON,
-      sym_identifier,
+      sym_filepath,
   [971] = 2,
     ACTIONS(3), 2,
       sym_comment,
@@ -2146,7 +2152,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_LF,
       anon_sym_PIPE,
       anon_sym_COLON,
-      sym_identifier,
+      sym_filepath,
   [985] = 2,
     ACTIONS(3), 2,
       sym_comment,
@@ -2158,7 +2164,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_LF,
       anon_sym_PIPE,
       anon_sym_COLON,
-      sym_identifier,
+      sym_filepath,
   [999] = 2,
     ACTIONS(3), 2,
       sym_comment,
@@ -2170,7 +2176,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_LF,
       anon_sym_PIPE,
       anon_sym_COLON,
-      sym_identifier,
+      sym_filepath,
   [1013] = 2,
     ACTIONS(3), 2,
       sym_comment,
@@ -2182,7 +2188,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_LF,
       anon_sym_PIPE,
       anon_sym_COLON,
-      sym_identifier,
+      sym_filepath,
   [1027] = 3,
     ACTIONS(144), 1,
       aux_sym_string_token1,
@@ -2364,7 +2370,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_RBRACE2,
   [1269] = 3,
     ACTIONS(19), 1,
-      sym_identifier,
+      sym_filepath,
     STATE(70), 1,
       sym_command,
     ACTIONS(3), 2,
@@ -2372,7 +2378,7 @@ static const uint16_t ts_small_parse_table[] = {
       sym__tab,
   [1280] = 3,
     ACTIONS(19), 1,
-      sym_identifier,
+      sym_filepath,
     STATE(38), 1,
       sym_command,
     ACTIONS(3), 2,
@@ -2380,7 +2386,7 @@ static const uint16_t ts_small_parse_table[] = {
       sym__tab,
   [1291] = 3,
     ACTIONS(19), 1,
-      sym_identifier,
+      sym_filepath,
     STATE(76), 1,
       sym_command,
     ACTIONS(3), 2,
@@ -2397,7 +2403,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_SPACE,
   [1315] = 3,
     ACTIONS(19), 1,
-      sym_identifier,
+      sym_filepath,
     STATE(75), 1,
       sym_command,
     ACTIONS(3), 2,

@@ -78,7 +78,7 @@
           "named": true
         },
         {
-          "type": "identifier",
+          "type": "filepath",
           "named": true
         }
       ]
