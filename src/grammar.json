@@ -133,8 +133,8 @@
               "type": "SEQ",
               "members": [
                 {
-                  "type": "STRING",
-                  "value": "|"
+                  "type": "SYMBOL",
+                  "name": "pipe"
                 },
                 {
                   "type": "SYMBOL",
@@ -198,6 +198,26 @@
           {
             "type": "SYMBOL",
             "name": "filepath"
+          },
+          {
+            "type": "REPEAT",
+            "content": {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "filepath"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "variable_expansion"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "variable"
+                }
+              ]
+            }
           },
           {
             "type": "CHOICE",
@@ -293,10 +313,6 @@
         {
           "type": "SYMBOL",
           "name": "variable_expansion"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "pipe"
         },
         {
           "type": "PREC",

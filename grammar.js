@@ -31,7 +31,7 @@ module.exports = grammar({
 
 		_statement: ($) =>
 			seq(
-				choice("\n", $.directive, $.command, seq("|", $.command)),
+				choice("\n", $.directive, $.command, seq($.pipe, $.command)),
 				repeat(";")
 			),
 
@@ -44,6 +44,9 @@ module.exports = grammar({
 			prec.right(
 				seq(
 					$.filepath,
+					repeat(
+						choice($.filepath, $.variable_expansion, $.variable)
+					),
 					optional("!"),
 					" ",
 					repeat(seq(optional("\\\n"), $.argument))
@@ -61,7 +64,6 @@ module.exports = grammar({
 				$.identifier,
 				$.variable,
 				$.variable_expansion,
-				$.pipe,
 				prec(1, $.redirect)
 			),
 

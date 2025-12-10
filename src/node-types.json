@@ -20,10 +20,6 @@
           "named": true
         },
         {
-          "type": "pipe",
-          "named": true
-        },
-        {
           "type": "redirect",
           "named": true
         },
@@ -61,6 +57,10 @@
         {
           "type": "directive",
           "named": true
+        },
+        {
+          "type": "pipe",
+          "named": true
         }
       ]
     }
@@ -79,6 +79,14 @@
         },
         {
           "type": "filepath",
+          "named": true
+        },
+        {
+          "type": "variable",
+          "named": true
+        },
+        {
+          "type": "variable_expansion",
           "named": true
         }
       ]
@@ -113,11 +121,6 @@
     }
   },
   {
-    "type": "pipe",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "source_file",
     "named": true,
     "root": true,
@@ -132,6 +135,10 @@
         },
         {
           "type": "directive",
+          "named": true
+        },
+        {
+          "type": "pipe",
           "named": true
         },
         {
@@ -296,6 +303,10 @@
     "named": true
   },
   {
+    "type": "pipe",
+    "named": true
+  },
+  {
     "type": "redirect",
     "named": true
   },
@@ -309,10 +320,6 @@
   },
   {
     "type": "{",
-    "named": false
-  },
-  {
-    "type": "|",
     "named": false
   },
   {
