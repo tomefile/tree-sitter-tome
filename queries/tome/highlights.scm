@@ -31,5 +31,8 @@
 
 (subcommand) @module
 
-";" @comment
+[
+  ";"
+  "\\\n"
+] @comment
 "!" @function.builtin
