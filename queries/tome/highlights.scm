@@ -24,7 +24,10 @@
 (directive
   (identifier) @keyword)
 
-(comparator) @keyword
+[
+  (comparator)
+  (pipe)
+] @keyword
 
 (subcommand) @module
 
